@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  logInCardForm: boolean;
+  forgotCardForm: boolean;
+  constructor() {
+    this.logInCardForm = true;
+    this.forgotCardForm = false;
+  }
 
   ngOnInit(): void {
+  }
+  changeFormState(state) {
+    if (state == 'logInCardForm') {
+      this.logInCardForm = true; this.forgotCardForm = false;
+    }
+    if (state == 'forgotCardForm') {
+      this.forgotCardForm = true; this.logInCardForm = false;
+    }
   }
 
 }
