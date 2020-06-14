@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.alertService.clearMessage();
         this.alertService.sendMessage("Login Successfully", 'success');
-        this.$sessionStorage.store('oAuth', res.token);
+        this.$sessionStorage.store('authenticationtoken', res.token);
         this.router.navigate(['./dashboard']);
       }, (err) => {
         this.spinnerService.hideLoader();
