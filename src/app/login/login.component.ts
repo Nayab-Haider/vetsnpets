@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   logInCardForm: boolean;
   forgotCardForm: boolean;
   loginForm: FormGroup;
-  constructor(private apiCommonService: ApiCommonService, private _fb: FormBuilder) {
+  constructor(private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService) {
     this.logInCardForm = true;
     this.forgotCardForm = false;
     this.loginForm = this._fb.group({
@@ -32,12 +33,17 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.spinnerService.showLoader();
     const body = {
       "password": this.loginForm.controls.password.value,
       "userName": this.loginForm.controls.userName.value
     }
     this.apiCommonService.post("/user/authenticate", body).subscribe(res => {
       console.log(res);
+    }, (err) => {
+
+    }, () => {
+      this.spinnerService.hideLoader();
     })
   }
 
