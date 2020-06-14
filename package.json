@@ -24,6 +24,7 @@
     "bootstrap": "^4.4.1",
     "easy-pie-chart": "^2.1.7",
     "ngx-loading": "^8.0.0",
+    "ngx-webstorage": "^5.0.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.0-rc.4",
     "rxjs": "~6.5.4",
