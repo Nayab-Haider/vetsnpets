@@ -1,0 +1,30 @@
+.container-fluid {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  // main {padding-top: 3rem;}
+  .alert-box {
+    position: fixed;
+    width: 50%;
+    z-index: 9999;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  
+  .removeAlert {
+    display: none;
+  }
+  
+  @media (max-width: 740px) {
+    .alert-box {
+      width: 80%;
+    }
+  
+    ::ng-deep .fixed-top .navbar-collapse {
+      height: auto !important;
+    }
+  }
+  

@@ -1,3 +1,10 @@
+<div #alert [class.alert-danger]="alertType  === 'error'" [class.alert-success]="alertType  === 'success'" [class.removeAlert]="removeAlert  === true"
+    class="alert alert-dismissible fade alert-box" role="alert">
+    <button type="button" class="close" aria-label="Close" (click)="dismissAlert()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{message}}</strong>
+</div>
 <app-header></app-header>
 <router-outlet></router-outlet>
 <ngx-loading [show]="loadingSpinner" [config]="{ fullScreenBackdrop: true }"></ngx-loading>
