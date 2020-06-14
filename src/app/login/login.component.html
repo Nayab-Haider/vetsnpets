@@ -9,10 +9,9 @@
                         </div>
                         <h1 class="h1-responsive-heading">Welcome to vets and pets </h1>
                         <hr class="hr-light">
-                        <h6 class="h1-responsive-heading_description">Lorem Ipsum is simply dummy text of the printing
-                            and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since
-                            the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book.
+                        <h6 class="h1-responsive-heading_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                            type and scrambled it to make a type specimen book.
                         </h6>
                     </div>
                 </div>
@@ -24,37 +23,45 @@
                             </h2>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form [formGroup]="loginForm">
                                 <div class="input-group mt-3 mb-4">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </span>
                                     </div>
-                                    <input type="text" name="" class="form-control input_user" value=""
-                                        placeholder="E-mail">
+                                    <input type="text" name="" class="form-control input_user" formControlName="userName" placeholder="User Name">
                                 </div>
                                 <div class="input-group mt-3 mb-3">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-key"></i>
+                                        </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                        placeholder="Password">
+                                    <input type="password" name="" class="form-control input_pass" formControlName="password" placeholder="Password">
                                 </div>
                                 <div class="forggetnPassword">
                                     <a (click)="changeFormState('forgotCardForm')">Forgot Password</a>
                                 </div>
                                 <div class="d-flex justify-content-center mt-5 login_container">
-                                    <button type="button" name="button" class="btn login_btn">SIGN IN</button>
+                                    <button (click)="login()" type="button" name="button" class="btn login_btn">SIGN IN</button>
                                 </div>
                                 <div class="socialMedia_icons mt-5">
                                     <ul class="socialMedia_icons-listing text-center">
                                         <li>
-                                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="facebook">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" class="twitter">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="#" class="linkedin">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,25 +79,28 @@
                             <form>
                                 <div class="input-group mt-3 mb-4">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </span>
                                     </div>
-                                    <input type="text" name="" class="form-control input_user" value=""
-                                        placeholder="E-mail">
+                                    <input type="text" name="" class="form-control input_user" value="" placeholder="E-mail">
                                 </div>
                                 <div class="input-group mt-3 mb-4">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-key"></i>
+                                        </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                        placeholder="New Password">
+                                    <input type="password" name="" class="form-control input_pass" value="" placeholder="New Password">
                                 </div>
 
                                 <div class="input-group mt-3 mb-3">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-key"></i>
+                                        </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                        placeholder="Confirm Password">
+                                    <input type="password" name="" class="form-control input_pass" value="" placeholder="Confirm Password">
                                 </div>
 
                                 <div class="d-flex justify-content-center mt-5 login_container">
@@ -98,21 +108,27 @@
                                 </div>
 
                                 <div class="text-center mt-3">
-                                    <a href="#" (click)="changeFormState('logInCardForm')" class="backTo_login"><i
-                                            class="fas fa-long-arrow-alt-left"></i> Back To
-                                        LogIn</a>
+                                    <a href="#" (click)="changeFormState('logInCardForm')" class="backTo_login">
+                                        <i class="fas fa-long-arrow-alt-left"></i> Back To LogIn
+                                    </a>
                                 </div>
 
                                 <div class="socialMedia_icons mt-5">
                                     <ul class="socialMedia_icons-listing text-center">
                                         <li>
-                                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="facebook">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" class="twitter">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="#" class="linkedin">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
