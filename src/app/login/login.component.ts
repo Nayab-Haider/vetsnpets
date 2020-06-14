@@ -3,7 +3,7 @@ import { ApiCommonService } from 'src/app/services/api-common.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   logInCardForm: boolean;
   forgotCardForm: boolean;
   loginForm: FormGroup;
-  constructor(private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService, private alertService: AlertService) {
+  constructor(private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService, private alertService: AlertService, private router: Router) {
     this.logInCardForm = true;
     this.forgotCardForm = false;
     this.loginForm = this._fb.group({
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       console.log(res);
       this.alertService.clearMessage();
       this.alertService.sendMessage("Login Successfully", 'success');
+      this.router.navigate(['./dashboard']);
     }, (err) => {
       this.spinnerService.hideLoader();
     }, () => {

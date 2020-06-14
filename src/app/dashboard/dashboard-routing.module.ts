@@ -5,7 +5,7 @@ import { AddVaccineComponent } from 'src/app/dashboard/add-vaccine/add-vaccine.c
 
 const routes: Routes = [
   {
-    path: 'add-vaccine',
+    path: '',
     component: AddVaccineComponent
   }
 ];
