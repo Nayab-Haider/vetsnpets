@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import { DashboardModule } from 'src/app/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MainComponent } from './main/main.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
