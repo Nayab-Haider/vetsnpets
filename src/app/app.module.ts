@@ -10,6 +10,7 @@ import { DashboardModule } from 'src/app/dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,8 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
       tertiaryColour: '#00c851'
     }),
     BrowserModule,
+    NoopAnimationsModule,
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,

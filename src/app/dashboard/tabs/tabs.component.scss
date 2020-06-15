@@ -1,0 +1,17 @@
+.tab_pane .tab_listing li {
+  list-style: none;
+  display: inline-block;
+}
+
+.tab_pane .tab_listing li>.nav-link {
+  border: 1px solid #eee;
+  padding: 20px 50px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tab_pane .tab_listing li>.nav-link.active {
+  background-color: #d35400;
+  color: #fff;
+  border: 1px solid #eee;
+}
