@@ -51,15 +51,14 @@ export class LoginComponent implements OnInit {
         this.$sessionStorage.store('authenticationtoken', res.token);
         this.router.navigate(['./dashboard/tabs/add-vaccine']);
       }, (err) => {
-        this.spinnerService.hideLoader();
       }, () => {
         this.spinnerService.hideLoader();
       })
     } else {
-      // Object.keys(this.loginForm.controls).forEach(field => {
-      //   const control = this.loginForm.get(field);
-      //   control.markAsTouched({ onlySelf: true });
-      // });
+      Object.keys(this.loginForm.controls).forEach(field => {
+        const control = this.loginForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
     }
   }
 
