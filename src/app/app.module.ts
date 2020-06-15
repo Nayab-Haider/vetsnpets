@@ -14,6 +14,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiInterceptorService } from 'src/app/services/interceptors/api-interceptor.service';
 import { ErrorHandlerInterceptor } from 'src/app/services/interceptors/errorhandler.interceptor';
 import { ApiCommonService } from 'src/app/services/api-common.service';
+import { OAuthComponentGuard } from 'src/app/services/oauth.component.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { ApiCommonService } from 'src/app/services/api-common.service';
       multi: true
     },
     ApiCommonService,
+    OAuthComponentGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.alertService.clearMessage();
         this.alertService.sendMessage("Login Successfully", 'success');
         this.$sessionStorage.store('authenticationtoken', res.token);
-        this.router.navigate(['./dashboard/tabs/add-vaccine']);
+        this.router.navigate(['./dashboard/add-vaccine']);
       }, (err) => {
       }, () => {
         this.spinnerService.hideLoader();

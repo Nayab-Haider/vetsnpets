@@ -6,7 +6,7 @@ import { TabsComponent } from './tabs/tabs.component';
 
 const routes: Routes = [
   {
-    path: 'tabs', component: TabsComponent,
+    path: '', component: TabsComponent,
     children: [
       { path: '', redirectTo: 'add-vaccine', pathMatch: 'full' },
       { path: 'add-vaccine', component: AddVaccineComponent }
