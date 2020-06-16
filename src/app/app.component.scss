@@ -1,30 +1,35 @@
 .container-fluid {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  
-  // main {padding-top: 3rem;}
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// main {padding-top: 3rem;}
+.alert-box {
+  position: fixed;
+  width: 50%;
+  z-index: 9999;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.alert-success {
+  color: #ffffff;
+  background-color: #15af39;
+  border-color: #15af39;
+}
+
+.removeAlert {
+  display: none;
+}
+
+@media (max-width: 740px) {
   .alert-box {
-    position: fixed;
-    width: 50%;
-    z-index: 9999;
-    margin-left: 25%;
-    margin-right: 25%;
+    width: 80%;
   }
-  
-  .removeAlert {
-    display: none;
+
+  ::ng-deep .fixed-top .navbar-collapse {
+    height: auto !important;
   }
-  
-  @media (max-width: 740px) {
-    .alert-box {
-      width: 80%;
-    }
-  
-    ::ng-deep .fixed-top .navbar-collapse {
-      height: auto !important;
-    }
-  }
-  
+}

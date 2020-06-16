@@ -27,9 +27,9 @@ import { OAuthComponentGuard } from 'src/app/services/oauth.component.guard';
       animationType: ngxLoadingAnimationTypes.doubleBounce,
       backdropBackgroundColour: 'rgba(0,0,0,0.5)',
       backdropBorderRadius: '4px',
-      primaryColour: '#00c851',
-      secondaryColour: '#00c851',
-      tertiaryColour: '#00c851'
+      primaryColour: '#d35400',
+      secondaryColour: '#d35400',
+      tertiaryColour: '#d35400'
     }),
     BrowserModule,
     NoopAnimationsModule,
