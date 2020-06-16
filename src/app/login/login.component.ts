@@ -5,6 +5,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { Router } from '@angular/router';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { LoginLogoutService } from 'src/app/services/login-logout.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService,
     private alertService: AlertService, private router: Router,
     private $localStorage: LocalStorageService,
-    private $sessionStorage: SessionStorageService) {
+    private $sessionStorage: SessionStorageService,
+    private loginLogoutService: LoginLogoutService) {
     this.logInCardForm = true;
     this.forgotCardForm = false;
     this.loginForm = this._fb.group({
@@ -49,17 +51,17 @@ export class LoginComponent implements OnInit {
         this.alertService.clearMessage();
         this.alertService.sendMessage("Login Successfully", 'success');
         this.$sessionStorage.store('authenticationtoken', res.token);
-        this.router.navigate(['./dashboard/tabs/add-vaccine']);
+        this.loginLogoutService.hideLogin();
+        this.router.navigate(['./dashboard/add-vaccine']);
       }, (err) => {
-        this.spinnerService.hideLoader();
       }, () => {
         this.spinnerService.hideLoader();
       })
     } else {
-      // Object.keys(this.loginForm.controls).forEach(field => {
-      //   const control = this.loginForm.get(field);
-      //   control.markAsTouched({ onlySelf: true });
-      // });
+      Object.keys(this.loginForm.controls).forEach(field => {
+        const control = this.loginForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
     }
   }
 

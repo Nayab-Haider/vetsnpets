@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 export class ApiInterceptorService implements HttpInterceptor {
     constructor(private localStorage: LocalStorageService, private sessionStorage: SessionStorageService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        console.log("In API Interceptor");
         if (!request || !request.url || (/^http/.test(request.url) && !(environment.baseUrl && request.url.startsWith(environment.baseUrl)))) {
             console.log("In API Interceptor");
             return next.handle(request);

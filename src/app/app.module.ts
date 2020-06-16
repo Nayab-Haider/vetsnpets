@@ -7,10 +7,14 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { DashboardModule } from 'src/app/dashboard/dashboard.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiInterceptorService } from 'src/app/services/interceptors/api-interceptor.service';
+import { ErrorHandlerInterceptor } from 'src/app/services/interceptors/errorhandler.interceptor';
+import { ApiCommonService } from 'src/app/services/api-common.service';
+import { OAuthComponentGuard } from 'src/app/services/oauth.component.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +41,20 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true
+    },
+    ApiCommonService,
+    OAuthComponentGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
