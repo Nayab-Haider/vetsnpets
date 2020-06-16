@@ -1,11 +1,12 @@
 <div class="container-fluid">
     <div class="mx-5">
         <div class="button-head text-right">
-            <button pTooltip="Add Vaccine" tooltipPosition="top" (click)="showDialog()"><i
+            <button pTooltip="Add Vaccine" tooltipPosition="top" (click)="addNewVaccineDialog()"><i
                     class="fas fa-plus-circle"></i> </button>
         </div>
         <p-table #dt [columns]="columns" [value]="users" [rows]="5" [paginator]="true" [pageLinks]="5"
-            [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true">
+            [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
+            styleClass="mytable">
             <ng-template pTemplate="caption">
                 <div class="ui-table-globalfilter-container">
                     <div class="form-inline">
@@ -34,7 +35,7 @@
                                 <a pTooltip="Update Vaccine" tooltipPosition="top">
                                     <i class="fas fa-edit"></i></a>
 
-                                <a pTooltip="Delete Vaccine" tooltipPosition="top">
+                                <a pTooltip="Delete Vaccine" tooltipPosition="top" (click)="deleteVaccineDialog()">
                                     <i class="fas fa-trash"></i></a>
                             </div>
                         </div>
@@ -44,7 +45,7 @@
         </p-table>
     </div>
 </div>
-<p-dialog header="Add New Vaccine" [(visible)]="display" styleClass="mydialog" [style]="{width: '50vw'}">
+<p-dialog header="Add New Vaccine" [(visible)]="addVaccine" styleClass="mydialog" [style]="{width: '50vw'}">
     <div class="mx-2 mt-3">
         <form>
             <div class="form-group">
@@ -64,6 +65,22 @@
         <div class="model-footer-btns text-md-right mt-4">
             <button class="cancelBtn" (click)="hideDialog()">Cancel</button>
             <button class="SaveBtn">Save</button>
+        </div>
+    </div>
+</p-dialog>
+
+
+
+
+<p-dialog header="Delete Vaccine" [(visible)]="deleteVaccine" styleClass="mydialog" [style]="{width: '40vw'}">
+    <div class="mx-2 mt-3">
+        <div class="text-center deleteVaccineCard-header">
+            <span><i class="fa fa-trash"></i></span>
+            <p>Do you want to delete this vaccine?</p>
+        </div>
+        <div class="model-footer-btns text-md-right mt-4">
+            <button class="cancelBtn" (click)="hideDialog()">Cancel</button>
+            <button class="SaveBtn">Delete</button>
         </div>
     </div>
 </p-dialog>

@@ -216,7 +216,41 @@ h6 {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.mydialog.ui-dialog .ui-dialog-titlebar {
+  background: #d35400;
+  border: 1px solid #d35400;
+  color: #ffffff;
+  font-size: 16px;
+}
 
+.mydialog.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon {
+  color: #ffffff;
+}
+
+.mytable.ui-table .ui-sortable-column.ui-state-highlight {
+  background: #d35400;
+  outline: 0;
+}
+
+.mytable.ui-table .ui-sortable-column:focus {
+  box-shadow: none;
+}
+
+.mytable.ui-table .ui-table-caption {
+  background-color: #d35400;
+  color: #ffffff;
+}
+
+.deleteVaccineCard-header span {
+  font-size: 35px;
+  color: #e32323;
+}
+
+.deleteVaccineCard-header p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #474747;
+}
 
 /*----------------------------
    For responsive      

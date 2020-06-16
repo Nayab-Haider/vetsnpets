@@ -12,13 +12,18 @@ export class AddVaccineComponent implements OnInit {
     { field: 'actions', header: 'Actions' },
   ];
   users: User[];
-  display: boolean = false;
+  addVaccine: boolean = false;
+  deleteVaccine: boolean = false;
   constructor() { }
-  showDialog() {
-    this.display = true;
+  addNewVaccineDialog() {
+    this.addVaccine = true;
+  }
+  deleteVaccineDialog() {
+    this.deleteVaccine = true;
   }
   hideDialog() {
-    this.display = false;
+    this.addVaccine = false;
+    this.deleteVaccine = false;
   }
   ngOnInit(): void {
     this.users = [
