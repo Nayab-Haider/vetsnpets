@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="mx-5">
         <div class="button-head text-right">
-            <button pTooltip="Add Vaccine" tooltipPosition="top" (click)="addNewVaccineDialog()"><i
+            <button pTooltip="Add Vaccine" tooltipPosition="top" (click)="showDialog()"><i
                     class="fas fa-plus-circle"></i> </button>
         </div>
         <p-table #dt [columns]="columns" [value]="vaccines" [rows]="5" [paginator]="true" [pageLinks]="5"
