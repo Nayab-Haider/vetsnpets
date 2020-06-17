@@ -4,7 +4,7 @@
             <button pTooltip="Add Vaccine" tooltipPosition="top" (click)="showDialog()"><i
                     class="fas fa-plus-circle"></i> </button>
         </div>
-        <p-table #dt [columns]="columns" [value]="vaccines" [rows]="5" [paginator]="true" [pageLinks]="5"
+        <p-table #dt1 [columns]="columns" [value]="vaccines" [rows]="5" [paginator]="true" [pageLinks]="5"
             [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
             styleClass="mytable">
             <ng-template pTemplate="caption">
@@ -12,7 +12,7 @@
                     <div class="form-inline">
                         <i class="fas fa-search" aria-hidden="true"></i>
                         <input pInputText type="text" class="form-control form-control-sm ml-2 w-25"
-                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                            (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
                     </div>
                 </div>
             </ng-template>

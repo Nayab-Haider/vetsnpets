@@ -1,14 +1,13 @@
 <div class="container-fluid">
     <div class="mx-5">
-        <p-table #dt [columns]="columns" [value]="users" [rows]="5" [paginator]="true" [pageLinks]="5"
-            [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
-            styleClass="mytable">
+        <p-table #dt2 [columns]="columns" [value]="users" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]"
+            [resizableColumns]="true" [autoLayout]="true" [responsive]="true" styleClass="mytable">
             <ng-template pTemplate="caption">
                 <div class="ui-table-globalfilter-container">
                     <div class="form-inline">
                         <i class="fas fa-search" aria-hidden="true"></i>
-                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25"
-                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25" (input)="dt2.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search" />
                     </div>
                 </div>
             </ng-template>
@@ -28,7 +27,7 @@
                         </div>
                         <div *ngIf="col.field=='actions'">
                             <div class="table_buttton_groupbtn">
-                                <a pTooltip="View Own Pets" tooltipPosition="top" (click)="viewAllPets()">
+                                <a pTooltip="View Pets" tooltipPosition="top" (click)="viewAllPets(car)">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </div>

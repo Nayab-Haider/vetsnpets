@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { NgSelectModule, NgOption, NgSelectConfig } from '@ng-select/ng-select';
+import { ApiCommonService } from 'src/app/services/api-common.service';
+import { FormBuilder } from '@angular/forms';
+import { SpinnerService } from 'src/app/services/spinner.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { Subscription } from 'rxjs';
+import { SelectedUserService } from 'src/app/services/selected-user.service';
 @Component({
   selector: 'app-pet-details',
   templateUrl: './pet-details.component.html',
@@ -8,44 +14,44 @@ import { NgSelectModule, NgOption, NgSelectConfig } from '@ng-select/ng-select';
 })
 export class PetDetailsComponent implements OnInit {
   columns = [
-    { field: 'image', header: 'Pet Image' },
-    { field: 'petname', header: 'Pet Name' },
-    { field: 'age', header: 'Age' },
-    { field: 'breed', header: 'Breed' },
-    { field: 'dob', header: 'D.O.B' },
+    { field: 'url', header: 'Picture' },
+    { field: 'name', header: 'Pet Name' },
+    { field: 'age', header: 'Age (In Years)' },
+    { field: 'breedName', header: 'Breed' },
     { field: 'gender', header: 'Gender' },
-    { field: 'weight', header: 'Weight' },
-    { field: 'colour', header: 'Colour' },
+    { field: 'weight', header: 'Weight (In KG)' },
     { field: 'actions', header: 'Action' },
   ];
-  items = [
-    { id: 1, name: 'Vilnius' },
-    { id: 2, name: 'Kaunas' },
-    { id: 3, name: 'Pavilnys' },
-    { id: 4, name: 'Pabradė' },
-    { id: 5, name: 'Klaipėda' },
-    { id: 1, name: 'Vilnius' },
-    { id: 2, name: 'Kaunas' },
-    { id: 3, name: 'Pavilnys' },
-    { id: 4, name: 'Pabradė' },
-    { id: 5, name: 'Klaipėda' },
-  ];
-  selectedItemIds: string[];
-  car: SelectItem[];
-  selectedItem: Item[];
-  allPets: Pets[];
-  dates: Date[];
+
+  selectedUserSubscription: Subscription;
+  selectedUserId: any;
+  selectedUserName: any;
+  items = [];
+  selectedItemIds = [];
+  car = [];
+  selectedItem = [];
+  allPets = [];
+  dates = new Date();
   value: Date;
   dialogHeader = '';
   displayPetDetailsDialog: boolean = false;
-  constructor(private config: NgSelectConfig) {
+  constructor(private config: NgSelectConfig, private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService,
+    private alertService: AlertService, private selectedUserService: SelectedUserService) {
     this.config.appendTo = 'body';
-    this.allPets = [
-      { image: '', petname: 'Charlie', age: '08 year', breed: 'Bulldog', colour: 'White', dob: "2020 - 06 - 16", gender: 'MALE', weight: '14kg', actions: "" },
-    ];
   }
 
   ngOnInit(): void {
+    this.selectedUserSubscription = this.selectedUserService
+      .getSelectedUserId()
+      .subscribe(selectedUserId => {
+        this.selectedUserId = selectedUserId;
+      });
+    this.selectedUserSubscription = this.selectedUserService
+      .getSelectedUserName()
+      .subscribe(selectedUserName => {
+        this.selectedUserName = selectedUserName;
+      });
+    this.getAllPetsByUser();
   }
   showDialog() {
     this.displayPetDetailsDialog = true;
@@ -54,19 +60,30 @@ export class PetDetailsComponent implements OnInit {
   hideDialog() {
     this.displayPetDetailsDialog = false;
   }
-}
-export interface Pets {
-  image;
-  petname;
-  age;
-  colour;
-  dob;
-  breed;
-  gender;
-  weight;
-  actions;
-}
-export interface Item {
-  name: string,
-  code: string
+
+  getAllPetsByUser() {
+    this.allPets = [];
+    this.spinnerService.showLoader();
+    this.apiCommonService.get("/pet/" + this.selectedUserId).subscribe(res => {
+      console.log(res);
+      res.forEach(element => {
+        this.allPets.push({
+          "gender": element.gender,
+          "weight": element.weight,
+          "petsId": element.petsId,
+          "url": element.url,
+          "breedName": element.breedName,
+          "name": element.name,
+          "age": element.age
+        });
+      });
+    }, (err) => {
+    }, () => {
+      this.spinnerService.hideLoader();
+    })
+  }
+
+  ngOnDestroy() {
+    this.selectedUserSubscription.unsubscribe();
+  }
 }

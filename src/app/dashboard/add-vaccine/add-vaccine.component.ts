@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DialogService } from "primeng/dynamicdialog";
 import { AlertService } from 'src/app/services/alert.service';
 import { ApiCommonService } from 'src/app/services/api-common.service';
@@ -12,7 +12,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class AddVaccineComponent implements OnInit {
   columns = [
     { field: 'vaccineName', header: 'Vaccine Name' },
-    { field: 'recurring', header: 'Recurring' },
+    { field: 'recurring', header: 'Recurrence' },
     { field: 'actions', header: 'Actions' },
   ];
   dialogHeader = "";
