@@ -8,9 +8,12 @@ import { TabsComponent } from './tabs/tabs.component';
 import { TableModule } from "primeng/table";
 import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
-
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { PetDetailsComponent } from './pet-details/pet-details.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
-  declarations: [DashboardComponent, AddVaccineComponent, TabsComponent],
+  declarations: [DashboardComponent, AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -18,7 +21,9 @@ import { DialogModule } from 'primeng/dialog';
     TableModule,
     DialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+    CalendarModule
   ],
   entryComponents: []
 })

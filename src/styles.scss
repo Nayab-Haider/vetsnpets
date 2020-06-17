@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 /*----------------------------
          Add fonts
@@ -241,6 +242,10 @@ h6 {
   color: #ffffff;
 }
 
+.myMultiSelectDropdown.ui-multiselect {
+  width: 100%;
+}
+
 .deleteVaccineCard-header span {
   font-size: 35px;
   color: #e32323;
@@ -250,6 +255,93 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #474747;
+}
+
+.button-head button {
+  background: transparent;
+  color: #ffffff;
+  border: 0;
+  outline: 0;
+  font-size: 30px;
+  position: absolute;
+  z-index: 1024;
+  right: 80px;
+  margin-top: 5px;
+}
+
+.button-head .back-button {
+  font-size: 14px;
+  top: 95px;
+  font-weight: 600;
+}
+
+.table_buttton_groupbtn a {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.table_buttton_groupbtn a>.fa-trash {
+  color: #e32323;
+}
+
+.table_buttton_groupbtn a>.fa-edit {
+  color: #16c024;
+}
+
+.table_buttton_groupbtn a>.fa-eye {
+  color: #007ad9;
+}
+
+.model-footer-btns button {
+  border: 0;
+  outline: 0;
+  margin: 4px
+}
+
+.model-footer-btns .cancelBtn {
+  padding: 8px 26px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  color: #666666;
+}
+
+.ng-select.custom .ng-select-container {
+  border-radius: 2px !important;
+  padding: 2px;
+}
+
+.ng-select .ng-select-container {
+  border: 1px solid #a6a6a6;
+}
+
+.model-footer-btns .SaveBtn {
+  padding: 8px 26px;
+  border: 1px solid #d35400;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+  background: #d35400;
+  color: #ffffff;
+}
+
+.ng-select.custom {
+  border: 0px;
+  min-height: 0px;
+  border-radius: 0;
+}
+
+.ng-select.custom .ng-select-container {
+  min-height: 0px;
+  border-radius: 0;
+}
+
+.custom {
+  margin-left: 8px !important;
 }
 
 /*----------------------------

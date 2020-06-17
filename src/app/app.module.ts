@@ -15,6 +15,7 @@ import { ApiInterceptorService } from 'src/app/services/interceptors/api-interce
 import { ErrorHandlerInterceptor } from 'src/app/services/interceptors/errorhandler.interceptor';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { OAuthComponentGuard } from 'src/app/services/oauth.component.guard';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { OAuthComponentGuard } from 'src/app/services/oauth.component.guard';
     DashboardModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
+    NgSelectModule
   ],
   providers: [
     {

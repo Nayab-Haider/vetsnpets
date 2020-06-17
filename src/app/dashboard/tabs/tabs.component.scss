@@ -5,9 +5,12 @@
 
 .tab_pane .tab_listing li>.nav-link {
   border: 1px solid #eee;
-  padding: 20px 50px;
+  padding: 20px 30px;
   font-size: 15px;
   font-weight: 500;
+  min-width: 150px;
+  border-radius: 3px;
+  text-align: center;
 }
 
 .tab_pane .tab_listing li>.nav-link.active {
