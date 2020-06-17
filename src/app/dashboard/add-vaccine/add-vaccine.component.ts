@@ -60,7 +60,7 @@ export class AddVaccineComponent implements OnInit {
     console.log(this.vaccineForm.value);
     if (this.vaccineForm.valid) {
       this.spinnerService.showLoader();
-      this.apiCommonService.post("/vaccine/", body).subscribe(res => {
+      this.apiCommonService.post("/admin/vaccine/", body).subscribe(res => {
         console.log(res);
         this.alertService.clearMessage();
         this.alertService.sendMessage(res.message, 'success');
@@ -82,7 +82,7 @@ export class AddVaccineComponent implements OnInit {
   getVaccine() {
     this.vaccines = [];
     this.spinnerService.showLoader();
-    this.apiCommonService.get("/vaccine/").subscribe(res => {
+    this.apiCommonService.get("/admin/vaccine/").subscribe(res => {
       console.log(res);
       this.vaccines = res;
     }, (err) => {
@@ -109,7 +109,7 @@ export class AddVaccineComponent implements OnInit {
     console.log(this.vaccineForm.value);
     if (this.vaccineForm.valid) {
       this.spinnerService.showLoader();
-      this.apiCommonService.put("/vaccine/" + this.vaccineForm.controls.vaccineId.value, body).subscribe(res => {
+      this.apiCommonService.put("/admin/vaccine/" + this.vaccineForm.controls.vaccineId.value, body).subscribe(res => {
         console.log(res);
         this.alertService.clearMessage();
         this.alertService.sendMessage(res.message, 'success');
@@ -137,7 +137,7 @@ export class AddVaccineComponent implements OnInit {
 
   deleteVaccine() {
     this.spinnerService.showLoader();
-    this.apiCommonService.delete("/vaccine/" + this.selectedVaccine).subscribe(res => {
+    this.apiCommonService.delete("/admin/vaccine/" + this.selectedVaccine).subscribe(res => {
       console.log(res);
       this.alertService.clearMessage();
       this.alertService.sendMessage(res['message'], 'success');
