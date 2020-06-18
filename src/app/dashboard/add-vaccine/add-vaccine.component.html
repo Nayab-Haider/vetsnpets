@@ -54,7 +54,12 @@
             <div class="form-group">
                 <label for="formGroupExampleInput">Enter Vaccine Name</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Vaccine Name"
-                    formControlName="vaccineName">
+                    formControlName="vaccineName"
+                    [ngClass]="{ 'is-invalid': (this.vaccineForm.controls.vaccineName.invalid && this.vaccineForm.controls.vaccineName.touched), 'is-valid':(this.vaccineForm.controls.vaccineName.valid)}" />
+                <div *ngIf="(this.vaccineForm.controls.vaccineName.invalid && this.vaccineForm.controls.vaccineName.touched)"
+                    class="invalid-feedback mt-0">
+                    <span>Field is required</span>
+                </div>
             </div>
             <p class="mb-2">Is this vaccine recurring?</p>
             <div class="form-check form-check-inline">

@@ -9,8 +9,10 @@
                         </div>
                         <h1 class="h1-responsive-heading">Welcome to vets and pets </h1>
                         <hr class="hr-light">
-                        <h6 class="h1-responsive-heading_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                        <h6 class="h1-responsive-heading_description">Lorem Ipsum is simply dummy text of the printing
+                            and typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of
                             type and scrambled it to make a type specimen book.
                         </h6>
                     </div>
@@ -30,7 +32,13 @@
                                             <i class="fas fa-user"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="" class="form-control input_user" formControlName="userName" placeholder="User Name">
+                                    <input type="text" name="" class="form-control input_user"
+                                        formControlName="userName" placeholder="User Name"
+                                        [ngClass]="{ 'is-invalid': (this.loginForm.controls.userName.invalid && this.loginForm.controls.userName.touched),'is-valid':(this.loginForm.controls.userName.valid)}" />
+                                    <div *ngIf="(this.loginForm.controls.userName.invalid && this.loginForm.controls.userName.touched)"
+                                        class="invalid-feedback mt-0">
+                                        <span>Field is required</span>
+                                    </div>
                                 </div>
                                 <div class="input-group mt-3 mb-3">
                                     <div class="input-group-append">
@@ -38,13 +46,20 @@
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" formControlName="password" placeholder="Password">
+                                    <input type="password" name="" class="form-control input_pass"
+                                        formControlName="password" placeholder="Password"
+                                        [ngClass]="{ 'is-invalid': (this.loginForm.controls.password.invalid && this.loginForm.controls.password.touched),'is-valid':(this.loginForm.controls.password.valid)}">
+                                    <div *ngIf="(this.loginForm.controls.password.invalid && this.loginForm.controls.password.touched)"
+                                        class="invalid-feedback mt-0">
+                                        <span>Field is required</span>
+                                    </div>
                                 </div>
                                 <div class="forggetnPassword">
                                     <a (click)="changeFormState('forgotCardForm')">Forgot Password</a>
                                 </div>
                                 <div class="d-flex justify-content-center mt-5 login_container">
-                                    <button (click)="login()" type="button" name="button" class="btn login_btn">SIGN IN</button>
+                                    <button (click)="login()" type="button" name="button" class="btn login_btn">SIGN
+                                        IN</button>
                                 </div>
                                 <div class="socialMedia_icons mt-5">
                                     <ul class="socialMedia_icons-listing text-center">
@@ -83,7 +98,8 @@
                                             <i class="fas fa-user"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="" class="form-control input_user" value="" placeholder="E-mail">
+                                    <input type="text" name="" class="form-control input_user" value=""
+                                        placeholder="E-mail">
                                 </div>
                                 <div class="input-group mt-3 mb-4">
                                     <div class="input-group-append">
@@ -91,7 +107,8 @@
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value="" placeholder="New Password">
+                                    <input type="password" name="" class="form-control input_pass" value=""
+                                        placeholder="New Password">
                                 </div>
 
                                 <div class="input-group mt-3 mb-3">
@@ -100,7 +117,8 @@
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value="" placeholder="Confirm Password">
+                                    <input type="password" name="" class="form-control input_pass" value=""
+                                        placeholder="Confirm Password">
                                 </div>
 
                                 <div class="d-flex justify-content-center mt-5 login_container">
