@@ -58,7 +58,7 @@
     [draggable]="false" reponsive="true" appendTo="@(body)" appendTo="@(body)">
     <div class="mx-2 my-3">
         <form>
-            <ng-select [items]="items" class="custom" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select Vaccine"
+            <ng-select [items]="vaccines" class="custom" bindLabel="vaccineName" bindValue="vaccineId" [multiple]="false" placeholder="Select Vaccine"
                 [(ngModel)]="selectedItemIds" [ngModelOptions]="{standalone: true}">
             </ng-select>
 

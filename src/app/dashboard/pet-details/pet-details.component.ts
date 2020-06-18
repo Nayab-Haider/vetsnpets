@@ -26,18 +26,16 @@ export class PetDetailsComponent implements OnInit {
   selectedUserSubscription: Subscription;
   selectedUserId: any;
   selectedUserName: any;
-  items = [];
-  selectedItemIds = [];
-  car = [];
-  selectedItem = [];
+  vaccines = [];
   allPets = [];
   dates = new Date();
-  value: Date;
   dialogHeader = '';
+  selectedItemIds: any;
   displayPetDetailsDialog: boolean = false;
   constructor(private config: NgSelectConfig, private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService,
     private alertService: AlertService, private selectedUserService: SelectedUserService) {
     this.config.appendTo = 'body';
+    this.getVaccine();
   }
 
   ngOnInit(): void {
@@ -85,5 +83,17 @@ export class PetDetailsComponent implements OnInit {
 
   ngOnDestroy() {
     this.selectedUserSubscription.unsubscribe();
+  }
+
+  getVaccine() {
+    this.vaccines = [];
+    this.spinnerService.showLoader();
+    this.apiCommonService.get("/admin/vaccine/").subscribe(res => {
+      console.log(res);
+      this.vaccines = res;
+    }, (err) => {
+    }, () => {
+      this.spinnerService.hideLoader();
+    })
   }
 }
