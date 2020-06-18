@@ -1,21 +1,23 @@
 <div class="container-fluid">
     <div class="mx-5 mt-4">
+        <div class="main-title-head mt-5">
+            <h2>List of Pets for {{selectedUserName}}</h2>
+        </div>
         <div class="button-head text-right">
-            <button pTooltip="Back to User" tooltipPosition="top" class="back-button" [routerLink]="['/dashboard/user-details']">
+            <button pTooltip="Back to User" tooltipPosition="top" class="back-button"
+                [routerLink]="['/dashboard/user-details']">
                 <i class="fas fa-long-arrow-alt-left"></i> Back
             </button>
         </div>
-        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]"
-            [resizableColumns]="true" [autoLayout]="true" [responsive]="true" styleClass="mytable">
+        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5"
+            [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
+            styleClass="mytable">
             <ng-template pTemplate="caption">
                 <div class="ui-table-globalfilter-container">
                     <div class="form-inline">
                         <i class="fas fa-search" aria-hidden="true"></i>
-                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                            placeholder="Search" />
-                    </div>
-                    <div>
-                        List of Pets for {{selectedUserName}}
+                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
                     </div>
                 </div>
             </ng-template>
@@ -54,17 +56,19 @@
 </div>
 
 
-<p-dialog header="{{dialogHeader}}" position="top" [(visible)]="displayPetDetailsDialog" styleClass="mydialog" [style]="{width: '50vw'}"
-    [draggable]="false" reponsive="true" appendTo="@(body)" appendTo="@(body)">
+<p-dialog header="{{dialogHeader}}" position="top" [(visible)]="displayPetDetailsDialog" styleClass="mydialog"
+    [style]="{width: '50vw'}" [draggable]="false" reponsive="true" appendTo="@(body)">
     <div class="mx-2 my-3">
         <form>
-            <ng-select [items]="vaccines" class="custom" bindLabel="vaccineName" bindValue="vaccineId" [multiple]="false" placeholder="Select Vaccine"
-                [(ngModel)]="selectedItemIds" [ngModelOptions]="{standalone: true}">
+            <ng-select [items]="vaccines" class="custom" bindLabel="vaccineName" bindValue="vaccineId"
+                [multiple]="false" placeholder="Select Vaccine" [(ngModel)]="selectedItemIds"
+                [ngModelOptions]="{standalone: true}">
             </ng-select>
 
             <div class="ml-2 mt-4">
-                <p-calendar [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" placeholder="Select Date"
-                    appendTo="body" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
+                <p-calendar [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true"
+                    placeholder="Select Date" appendTo="body" [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}"></p-calendar>
             </div>
         </form>
         <div class="model-footer-btns text-md-right mt-4">

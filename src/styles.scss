@@ -271,8 +271,19 @@ h6 {
 
 .button-head .back-button {
   font-size: 14px;
-  top: 95px;
+  top: 38px;
   font-weight: 600;
+  position: relative;
+  right: 20px;
+}
+
+.main-title-head h2 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+  padding: 0;
+  color: #000;
+  line-height: 0;
 }
 
 .table_buttton_groupbtn a {

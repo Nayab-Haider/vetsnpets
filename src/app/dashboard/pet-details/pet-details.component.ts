@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { NgSelectModule, NgOption, NgSelectConfig } from '@ng-select/ng-select';
 import { ApiCommonService } from 'src/app/services/api-common.service';
@@ -13,6 +13,7 @@ import { SelectedUserService } from 'src/app/services/selected-user.service';
   styleUrls: ['./pet-details.component.scss']
 })
 export class PetDetailsComponent implements OnInit {
+  @ViewChild('dt', { static: false }) dt: any;
   columns = [
     { field: 'url', header: 'Picture' },
     { field: 'name', header: 'Pet Name' },
@@ -78,6 +79,7 @@ export class PetDetailsComponent implements OnInit {
     }, (err) => {
     }, () => {
       this.spinnerService.hideLoader();
+      this.dt.reset();
     })
   }
 

@@ -5,7 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddVaccineComponent } from './add-vaccine/add-vaccine.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { TableModule } from "primeng/table";
+import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { UserDetailsComponent } from './user-details/user-details.component';

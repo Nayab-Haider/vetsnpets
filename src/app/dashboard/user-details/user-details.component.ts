@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { FormBuilder } from '@angular/forms';
@@ -12,6 +12,7 @@ import { SelectedUserService } from 'src/app/services/selected-user.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
+  @ViewChild('dt', { static: false }) dt: any;
   columns = [
     { field: 'username', header: 'User Name' },
     { field: 'emailAddress', header: 'Email' },
@@ -39,6 +40,7 @@ export class UserDetailsComponent implements OnInit {
     }, (err) => {
     }, () => {
       this.spinnerService.hideLoader();
+      this.dt.reset();
     })
   }
 
