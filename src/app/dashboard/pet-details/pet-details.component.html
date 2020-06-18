@@ -1,20 +1,21 @@
 <div class="container-fluid">
     <div class="mx-5 mt-4">
         <div class="button-head text-right">
-            <button pTooltip="Back to User" tooltipPosition="top" class="back-button"
-                [routerLink]="['/dashboard/user-details']">
+            <button pTooltip="Back to User" tooltipPosition="top" class="back-button" [routerLink]="['/dashboard/user-details']">
                 <i class="fas fa-long-arrow-alt-left"></i> Back
             </button>
         </div>
-        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5"
-            [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
-            styleClass="mytable">
+        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]"
+            [resizableColumns]="true" [autoLayout]="true" [responsive]="true" styleClass="mytable">
             <ng-template pTemplate="caption">
                 <div class="ui-table-globalfilter-container">
                     <div class="form-inline">
                         <i class="fas fa-search" aria-hidden="true"></i>
-                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25"
-                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search" />
+                    </div>
+                    <div>
+                        List of Pets for {{selectedUserName}}
                     </div>
                 </div>
             </ng-template>
@@ -29,13 +30,12 @@
             <ng-template pTemplate="body" let-car let-columns="columns">
                 <tr>
                     <td *ngFor="let col of columns">
-                        <div *ngIf="col.field!='actions' && col.field!='image'">
+                        <div *ngIf="col.field!='actions' && col.field!='url'">
                             {{car[col.field]}}
                         </div>
-                        <div *ngIf="col.field=='image'">
+                        <div *ngIf="col.field=='url'">
                             <div class="pet-profile-image text-center">
-                                <img src="https://moderndogmagazine.com/sites/default/files/images/uploads/adorable-animal-breed-356378_0.jpg"
-                                    class="img-fluid">
+                                <img src="{{car[col.field]}}" class="img-fluid">
                             </div>
                         </div>
 
@@ -54,18 +54,17 @@
 </div>
 
 
-<p-dialog header="{{dialogHeader}}" position="top" [(visible)]="displayPetDetailsDialog" styleClass="mydialog"
-    [style]="{width: '50vw'}" [draggable]="false" reponsive="true" appendTo="@(body)" appendTo="@(body)">
+<p-dialog header="{{dialogHeader}}" position="top" [(visible)]="displayPetDetailsDialog" styleClass="mydialog" [style]="{width: '50vw'}"
+    [draggable]="false" reponsive="true" appendTo="@(body)" appendTo="@(body)">
     <div class="mx-2 my-3">
         <form>
-            <ng-select [items]="items" class="custom" bindLabel="name" bindValue="id" [multiple]="true"
-                placeholder="Select Vaccine" [(ngModel)]="selectedItemIds" [ngModelOptions]="{standalone: true}">
+            <ng-select [items]="items" class="custom" bindLabel="name" bindValue="id" [multiple]="true" placeholder="Select Vaccine"
+                [(ngModel)]="selectedItemIds" [ngModelOptions]="{standalone: true}">
             </ng-select>
 
             <div class="ml-2 mt-4">
-                <p-calendar [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true"
-                    [ngModelOptions]="{standalone: true}" placeholder="Select Date" appendTo="body"
-                    [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
+                <p-calendar [(ngModel)]="dates" selectionMode="multiple" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" placeholder="Select Date"
+                    appendTo="body" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"></p-calendar>
             </div>
         </form>
         <div class="model-footer-btns text-md-right mt-4">
