@@ -11,7 +11,10 @@ import { DialogModule } from 'primeng/dialog';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { CalendarModule } from 'primeng/calendar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [DashboardComponent, AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
   imports: [
@@ -23,7 +26,10 @@ import { CalendarModule } from 'primeng/calendar';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    CalendarModule
+    MatMenuModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule
   ],
   entryComponents: []
 })

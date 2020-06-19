@@ -32,6 +32,7 @@ export class PetDetailsComponent implements OnInit {
   dialogHeader = '';
   vaccineDetailsForm: FormGroup;
   displayPetDetailsDialog: boolean = false;
+  daysSelected: any[] = [];
   constructor(private config: NgSelectConfig, private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService,
     private alertService: AlertService, private selectedUserService: SelectedUserService) {
     this.vaccineDetailsForm = this._fb.group({
@@ -132,24 +133,49 @@ export class PetDetailsComponent implements OnInit {
 
   saveVaccineDetails() {
     console.log(this.vaccineDetailsForm.value);
+    console.log(this.daysSelected);
     if (this.vaccineDetailsForm.valid) {
-      this.spinnerService.showLoader();
-      this.apiCommonService.post("/admin/vaccine-details/", this.vaccineDetailsForm.value).subscribe(res => {
-        console.log(res);
-        this.alertService.clearMessage();
-        this.alertService.sendMessage(res.message, 'success');
-        this.hideDialog();
-        this.getAllPetsByUser();
-      }, (err) => {
-      }, () => {
+      // this.spinnerService.showLoader();
+      // this.apiCommonService.post("/admin/vaccine-details/", this.vaccineDetailsForm.value).subscribe(res => {
+      //   console.log(res);
+      //   this.alertService.clearMessage();
+      //   this.alertService.sendMessage(res.message, 'success');
+      //   this.hideDialog();
+      //   this.getAllPetsByUser();
+      // }, (err) => {
+      // }, () => {
 
-        this.spinnerService.hideLoader();
-      })
+      //   this.spinnerService.hideLoader();
+      // })
     } else {
       Object.keys(this.vaccineDetailsForm.controls).forEach(field => {
         const control = this.vaccineDetailsForm.get(field);
         control.markAsTouched({ onlySelf: true });
       });
     }
+  }
+
+  isSelected = (event: any) => {
+    const date =
+      event.getFullYear() +
+      "-" +
+      ("00" + (event.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("00" + event.getDate()).slice(-2);
+    return this.daysSelected.find(x => x == date) ? "selected" : null;
+  };
+
+  select(event: any, calendar: any, i: any) {
+    const date =
+      event.getFullYear() +
+      "-" +
+      ("00" + (event.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("00" + event.getDate()).slice(-2);
+    const index = this.daysSelected.findIndex(x => x == date);
+    if (index < 0) this.daysSelected.push(date);
+    else this.daysSelected.splice(index, 1);
+
+    calendar.updateTodaysDate();
   }
 }
