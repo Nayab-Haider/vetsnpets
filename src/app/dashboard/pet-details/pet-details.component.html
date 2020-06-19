@@ -9,7 +9,7 @@
                 <i class="fas fa-long-arrow-alt-left"></i> Back
             </button>
         </div>
-        <p-table #dt1 [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5"
+        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5"
             [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
             styleClass="mytable">
             <ng-template pTemplate="caption">
@@ -17,7 +17,7 @@
                     <div class="form-inline">
                         <i class="fas fa-search" aria-hidden="true"></i>
                         <input pInputText type="text" class="form-control form-control-sm ml-2 w-25"
-                            (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
                     </div>
                 </div>
             </ng-template>

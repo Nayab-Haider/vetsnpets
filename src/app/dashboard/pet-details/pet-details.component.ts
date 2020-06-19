@@ -13,7 +13,7 @@ import { SelectedUserService } from 'src/app/services/selected-user.service';
   styleUrls: ['./pet-details.component.scss']
 })
 export class PetDetailsComponent implements OnInit {
-  @ViewChild('dt1', { static: false }) dt1: any;
+  @ViewChild('dt', { static: false }) dt: any;
   columns = [
     { field: 'url', header: 'Picture' },
     { field: 'name', header: 'Pet Name' },
@@ -110,7 +110,7 @@ export class PetDetailsComponent implements OnInit {
     }, (err) => {
     }, () => {
       this.spinnerService.hideLoader();
-      // this.dt1.reset();
+      this.dt.reset();
     })
   }
 
