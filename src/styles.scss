@@ -303,6 +303,27 @@ h6 {
   color: #007ad9;
 }
 
+.model-vaccine-footer-btn button {
+  margin: 5px;
+}
+
+.model-vaccine-footer-btn .addVaccine {
+  color: #ffffff;
+  background: #007ad9;
+  border: 0;
+  outline: 0;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 2px;
+}
+
+.deleteVaccinebtn {
+  vertical-align: -webkit-baseline-middle;
+  color: #e32323 !important;
+  cursor: pointer;
+}
+
 .model-footer-btns button {
   border: 0;
   outline: 0;
@@ -322,8 +343,11 @@ h6 {
 }
 
 .ng-select.custom .ng-select-container {
-  border-radius: 2px !important;
-  padding: 2px;
+  border-radius: 4px !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 35px;
 }
 
 .ng-select .ng-select-container {
@@ -349,10 +373,6 @@ h6 {
 .ng-select.custom .ng-select-container {
   min-height: 0px;
   border-radius: 0;
-}
-
-.custom {
-  margin-left: 8px !important;
 }
 
 .invalid-feedback span {
