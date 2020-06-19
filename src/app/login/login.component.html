@@ -91,15 +91,24 @@
                             </h2>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form [formGroup]="fogotPasswordForm">
                                 <div class="input-group mt-3 mb-4">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
-                                            <i class="fas fa-user"></i>
+                                            <!-- <i class="fas fa-user"></i> -->
+                                            <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input type="text" name="" class="form-control input_user" value=""
-                                        placeholder="E-mail">
+                                    <!-- <input type="text" name="" class="form-control input_user" value=""
+                                        placeholder="E-mail"> -->
+                                    <input type="text" formControlName="oldPassword" class="form-control input_user"
+                                        value="" placeholder="Old Password"
+                                        [ngClass]="{ 'is-invalid': (this.fogotPasswordForm.controls.oldPassword.invalid && this.fogotPasswordForm.controls.oldPassword.touched),'is-valid':(this.fogotPasswordForm.controls.oldPassword.valid)}" />
+                                    <div *ngIf="(this.fogotPasswordForm.controls.oldPassword.invalid && this.fogotPasswordForm.controls.oldPassword.touched)"
+                                        class="invalid-feedback mt-0">
+                                        <span>Field is required</span>
+                                    </div>
+
                                 </div>
                                 <div class="input-group mt-3 mb-4">
                                     <div class="input-group-append">
@@ -107,8 +116,13 @@
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                        placeholder="New Password">
+                                    <input type="password" formControlName="newPassword" class="form-control input_pass"
+                                        value="" placeholder="New Password"
+                                        [ngClass]="{ 'is-invalid': (this.fogotPasswordForm.controls.newPassword.invalid && this.fogotPasswordForm.controls.newPassword.touched),'is-valid':(this.fogotPasswordForm.controls.newPassword.valid)}" />
+                                    <div *ngIf="(this.fogotPasswordForm.controls.newPassword.invalid && this.fogotPasswordForm.controls.newPassword.touched)"
+                                        class="invalid-feedback mt-0">
+                                        <span>Field is required</span>
+                                    </div>
                                 </div>
 
                                 <div class="input-group mt-3 mb-3">
@@ -117,12 +131,18 @@
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                        placeholder="Confirm Password">
+                                    <input type="password" formControlName="confirmNewPassword"
+                                        class="form-control input_pass" value="" placeholder="Confirm Password"
+                                        [ngClass]="{ 'is-invalid': (this.fogotPasswordForm.controls.confirmNewPassword.invalid && this.fogotPasswordForm.controls.confirmNewPassword.touched),'is-valid':(this.fogotPasswordForm.controls.confirmNewPassword.valid)}" />
+                                    <div *ngIf="(this.fogotPasswordForm.controls.confirmNewPassword.invalid && this.fogotPasswordForm.controls.confirmNewPassword.touched)"
+                                        class="invalid-feedback mt-0">
+                                        <span>Field is required</span>
+                                    </div>
                                 </div>
 
                                 <div class="d-flex justify-content-center mt-5 login_container">
-                                    <button type="button" name="button" class="btn login_btn">Change Password</button>
+                                    <button type="button" name="button" class="btn login_btn"
+                                        (click)="changePassword()">Change Password</button>
                                 </div>
 
                                 <div class="text-center mt-3">
