@@ -61,7 +61,7 @@
     <div class="mx-3 my-3">
         <form [formGroup]="vaccineDetailsForm">
             <div formArrayName="vaccineImmunizationDateVoList"
-                *ngFor="let line of vaccineDetailsForm.get('vaccineImmunizationDateVoList').controls; let i = index;">
+                *ngFor="let line of vaccineDetailsForm.get('vaccineImmunizationDateVoList')['controls']; let i = index;">
                 <div [formGroupName]="i" class="mt-3">
                     <div class="ui-grid ui-grid-responsive">
                         <div class="ui-grid-col-5">
