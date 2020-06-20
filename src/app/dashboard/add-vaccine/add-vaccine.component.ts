@@ -48,7 +48,6 @@ export class AddVaccineComponent implements OnInit {
 
   }
   selectedRecurring(event: any) {
-    console.log(event);
     this.vaccineForm.controls.recurring.setValue(event);
   }
   addVaccine() {
@@ -57,11 +56,9 @@ export class AddVaccineComponent implements OnInit {
       "vaccineId": this.vaccineForm.controls.vaccineId.value,
       "vaccineName": this.vaccineForm.controls.vaccineName.value,
     }
-    console.log(this.vaccineForm.value);
     if (this.vaccineForm.valid) {
       this.spinnerService.showLoader();
       this.apiCommonService.post("/admin/vaccine/", body).subscribe(res => {
-        console.log(res);
         this.alertService.clearMessage();
         this.alertService.sendMessage(res.message, 'success');
         this.hideDialog();
@@ -83,7 +80,6 @@ export class AddVaccineComponent implements OnInit {
     this.vaccines = [];
     this.spinnerService.showLoader();
     this.apiCommonService.get("/admin/vaccine/").subscribe(res => {
-      console.log(res);
       this.vaccines = res;
     }, (err) => {
     }, () => {
@@ -94,7 +90,6 @@ export class AddVaccineComponent implements OnInit {
   editVaccine(event: any) {
     this.showDialog();
     this.dialogHeader = "Update Vaccine";
-    console.log(event);
     this.vaccineForm.patchValue(event);
     this.vaccineForm.controls.recurring.setValue("" + event.recurring);
   }
@@ -106,11 +101,9 @@ export class AddVaccineComponent implements OnInit {
       "vaccineId": this.vaccineForm.controls.vaccineId.value,
       "vaccineName": this.vaccineForm.controls.vaccineName.value,
     }
-    console.log(this.vaccineForm.value);
     if (this.vaccineForm.valid) {
       this.spinnerService.showLoader();
       this.apiCommonService.put("/admin/vaccine/" + this.vaccineForm.controls.vaccineId.value, body).subscribe(res => {
-        console.log(res);
         this.alertService.clearMessage();
         this.alertService.sendMessage(res.message, 'success');
         this.hideDialog();
@@ -129,7 +122,6 @@ export class AddVaccineComponent implements OnInit {
   }
 
   deleteVaccineDialog(event: any) {
-    console.log(event);
     this.selectedVaccine = event.vaccineId;
     this.showDeleteDialog();
 
@@ -138,7 +130,6 @@ export class AddVaccineComponent implements OnInit {
   deleteVaccine() {
     this.spinnerService.showLoader();
     this.apiCommonService.delete("/admin/vaccine/" + this.selectedVaccine).subscribe(res => {
-      console.log(res);
       this.alertService.clearMessage();
       this.alertService.sendMessage(res['message'], 'success');
       this.hideDeleteDialog();

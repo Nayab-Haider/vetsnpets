@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
 import { DashboardModule } from 'src/app/dashboard/dashboard.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
@@ -20,8 +19,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent,
-    MainComponent
+    LoginComponent
   ],
   imports: [
     NgxLoadingModule.forRoot({

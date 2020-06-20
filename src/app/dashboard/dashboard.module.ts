@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddVaccineComponent } from './add-vaccine/add-vaccine.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TableModule } from 'primeng/table';
@@ -14,7 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarModule } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
 @NgModule({
-  declarations: [DashboardComponent, AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
+  declarations: [ AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

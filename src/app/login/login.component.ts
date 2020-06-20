@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.spinnerService.showLoader();
       this.apiCommonService.post("/user/authenticate", body).subscribe(res => {
-        console.log(res);
         this.alertService.clearMessage();
         this.alertService.sendMessage("Login Successfully", 'success');
         this.$sessionStorage.store('authenticationtoken', res.token);
@@ -117,7 +116,6 @@ export class LoginComponent implements OnInit {
     this.fogotPasswordForm.reset();
     if (this.forgotForm.valid) {
       this.spinnerService.showLoader();
-      console.log(this.forgotForm.controls.email.value);
       let emailAddress = this.forgotForm.controls.email.value;
       this.loginLogoutService.forgotPassword(emailAddress).subscribe((res) => {
         this.spinnerService.hideLoader();

@@ -47,7 +47,6 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   viewAllPets(event: any) {
-    console.log(event);
     this.selectedUserService.setSelectedUserId(event.userRegistrationId);
     this.selectedUserService.setSelectedUserName(event.username);
     this.router.navigate(['/dashboard/pet-details']);

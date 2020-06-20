@@ -30,7 +30,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         (event: HttpEvent<any>) => { },
         (err: any) => {
           this.spinnerService.hideLoader();
-          console.log("In ERROR Handler Interceptor");
           if (err instanceof HttpErrorResponse) {
             if (err.status === 400) {
               this.alertService.clearMessage();
@@ -46,7 +45,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
               this.router.navigate(["error"], navigationExtras);
               window.scroll(0, 0);
               if (err.status === 401) {
-                console.log("Inside logout method");
                 this.logout().subscribe();
               }
             }
@@ -60,7 +58,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
               };
               this.router.navigate(["error"], navigationExtras);
             }
-            console.log(err);
           }
         }
       )
