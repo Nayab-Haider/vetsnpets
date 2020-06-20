@@ -11,11 +11,6 @@ import { DialogModule } from 'primeng/dialog';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatIconModule } from '@angular/material/icon';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { CalendarModule } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
 @NgModule({
@@ -29,17 +24,9 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
     CalendarModule
   ],
   entryComponents: [],
-  exports: [
-    MatFormFieldModule
-  ],
   providers: [DatePipe]
 })
 export class DashboardModule { }

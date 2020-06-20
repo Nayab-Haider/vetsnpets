@@ -70,15 +70,6 @@
                         </div>
                         <div class="ui-grid-col-5">
                             <div class="mr-2">
-
-                                <!-- <button mat-icon-button [matMenuTriggerFor]="appMenu">
-                                    <mat-icon>calendar_today</mat-icon>
-                                </button>
-                                <mat-menu #appMenu="matMenu" class="drop-calendar">
-                                    <div (click)="$event.stopPropagation()">
-                                        <mat-calendar#calendar (selectedChange)="select($event,calendar,i)" [dateClass]="isSelected"></mat-calendar>
-                                    </div>
-                                </mat-menu> -->
                                 <p-calendar #myCalendar selectionMode="multiple" [readonlyInput]="true"
                                     placeholder="Select Date" appendTo="body" [style]="{'width':'100%'}"
                                     [inputStyle]="{'width':'100%'}" formControlName="immunizationDate"

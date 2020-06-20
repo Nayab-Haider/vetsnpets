@@ -190,34 +190,4 @@ export class PetDetailsComponent implements OnInit {
       });
     }
   }
-
-  // isSelected = (event: any) => {
-  //   const date =
-  //     event.getFullYear() +
-  //     "-" +
-  //     ("00" + (event.getMonth() + 1)).slice(-2) +
-  //     "-" +
-  //     ("00" + event.getDate()).slice(-2);
-  //   return this.daysSelected.find(x => x == date) ? "selected" : null;
-  // };
-
-  // select(event: any, calendar: any, i: any) {
-  //   const lineItemcontrol = <FormArray>this.vaccineDetailsForm.controls['vaccineImmunizationDateVoList'];
-  //   var immunizationDate = [];
-  //   if (lineItemcontrol.value[i].immunizationDate != "") {
-  //     immunizationDate = lineItemcontrol.value[i].immunizationDate
-  //   }
-
-  //   const date =
-  //     event.getFullYear() +
-  //     "-" +
-  //     ("00" + (event.getMonth() + 1)).slice(-2) +
-  //     "-" +
-  //     ("00" + event.getDate()).slice(-2);
-  //   const index = this.daysSelected.findIndex(x => x == date);
-  //   if (index < 0) this.daysSelected.push(date);
-  //   else this.daysSelected.splice(index, 1);
-
-  //   calendar.updateTodaysDate();
-  // }
 }
