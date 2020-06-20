@@ -93,6 +93,9 @@
                     </div>
                 </div>
             </div>
+            <span class="error-message" *ngIf="!vaccineDetailsForm.controls['vaccineImmunizationDateVoList'].valid">
+                Please select vaccines and date
+            </span>
         </form>
 
         <div class="model-vaccine-footer-btn mt-3">

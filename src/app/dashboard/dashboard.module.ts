@@ -12,8 +12,10 @@ import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CalendarModule } from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 @NgModule({
-  declarations: [ AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
+  declarations: [AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -23,7 +25,9 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    CalendarModule
+    CalendarModule,
+    MessageModule,
+    MessagesModule
   ],
   entryComponents: [],
   providers: [DatePipe]
