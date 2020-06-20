@@ -66,10 +66,25 @@ export class PetDetailsComponent implements OnInit {
     this.getAllPetsByUser();
   }
 
-  deleteVaccine(index: any) {
+  deleteVaccine(index: any, vaccineDetails: any) {
     const line = this.vaccineDetailsForm.get('vaccineImmunizationDateVoList') as FormArray;
     line.removeAt(index);
+    this.deleteVaccineDetails(vaccineDetails.controls.vaccineDetailsId.value);
   }
+
+  deleteVaccineDetails(vaccineDetailsId: any) {
+    if (vaccineDetailsId != null) {
+      this.spinnerService.showLoader();
+      this.apiCommonService.delete("/admin/vaccine-details/" + vaccineDetailsId).subscribe(res => {
+        console.log(res);
+      }, (err) => {
+      }, () => {
+        this.spinnerService.hideLoader();
+      })
+    }
+  }
+
+
   showDialog(event: any) {
     this.vaccineDetailsForm.reset();
     const lineItemcontrol = <FormArray>this.vaccineDetailsForm.controls['vaccineImmunizationDateVoList'];

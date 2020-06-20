@@ -70,15 +70,13 @@
                         </div>
                         <div class="ui-grid-col-5">
                             <div class="mr-2">
-                                <p-calendar #myCalendar selectionMode="multiple" [readonlyInput]="true"
-                                    placeholder="Select Date" appendTo="body" [style]="{'width':'100%'}"
-                                    [inputStyle]="{'width':'100%'}" formControlName="immunizationDate"
-                                    dateFormat="dd-mm-yy">
+                                <p-calendar #myCalendar selectionMode="multiple" [readonlyInput]="true" placeholder="Select Date" appendTo="body" [style]="{'width':'100%'}"
+                                    [inputStyle]="{'width':'100%'}" formControlName="immunizationDate" dateFormat="dd-mm-yy">
                                 </p-calendar>
                             </div>
                         </div>
                         <div class="ui-grid-col-2">
-                            <a (click)="deleteVaccine(i)" pTooltip="Delete Vaccine" tooltipPosition="top" class="deleteVaccinebtn ml-4">
+                            <a (click)="deleteVaccine(i,line)" pTooltip="Delete Vaccine" tooltipPosition="top" class="deleteVaccinebtn ml-4">
                                 <span class="delete">
                                     <i class="fa fa-trash" matTooltip="Delete"></i>
                                 </span>
