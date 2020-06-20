@@ -15,6 +15,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CalendarModule } from 'primeng/calendar';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [DashboardComponent, AddVaccineComponent, TabsComponent, UserDetailsComponent, PetDetailsComponent],
   imports: [
@@ -29,8 +32,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatMenuModule,
     MatDatepickerModule,
     MatIconModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatFormFieldModule,
+    CalendarModule
   ],
-  entryComponents: []
+  entryComponents: [],
+  exports: [
+    MatFormFieldModule
+  ],
+  providers: [DatePipe]
 })
 export class DashboardModule { }

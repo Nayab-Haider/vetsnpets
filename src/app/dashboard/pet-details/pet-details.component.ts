@@ -7,6 +7,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { Subscription } from 'rxjs';
 import { SelectedUserService } from 'src/app/services/selected-user.service';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-pet-details',
   templateUrl: './pet-details.component.html',
@@ -34,7 +35,7 @@ export class PetDetailsComponent implements OnInit {
   displayPetDetailsDialog: boolean = false;
   daysSelected: any[] = [];
   constructor(private config: NgSelectConfig, private apiCommonService: ApiCommonService, private _fb: FormBuilder, private spinnerService: SpinnerService,
-    private alertService: AlertService, private selectedUserService: SelectedUserService) {
+    private alertService: AlertService, private selectedUserService: SelectedUserService, private datePipe: DatePipe) {
     this.vaccineDetailsForm = this._fb.group({
       petsId: ["", Validators.required],
       vaccineImmunizationDateVoList: this._fb.array([this.setLines()])
@@ -46,7 +47,7 @@ export class PetDetailsComponent implements OnInit {
   setLines() {
     return this._fb.group({
       immunizationDate: ['', Validators.required],
-      vaccineDetailsId: [''],
+      vaccineDetailsId: [null],
       vaccineId: ['', Validators.required]
     });
   }
@@ -57,7 +58,6 @@ export class PetDetailsComponent implements OnInit {
       .subscribe(selectedUserId => {
         this.selectedUserId = selectedUserId;
       });
-    this.vaccineDetailsForm.controls.petsId.setValue(this.selectedUserId);
     this.selectedUserSubscription = this.selectedUserService
       .getSelectedUserName()
       .subscribe(selectedUserName => {
@@ -70,24 +70,27 @@ export class PetDetailsComponent implements OnInit {
     const line = this.vaccineDetailsForm.get('vaccineImmunizationDateVoList') as FormArray;
     line.removeAt(index);
   }
-  showDialog() {
-    this.displayPetDetailsDialog = true;
-    this.dialogHeader = "Update Details";
-  }
-  hideDialog() {
-    this.displayPetDetailsDialog = false;
+  showDialog(event: any) {
     this.vaccineDetailsForm.reset();
     const lineItemcontrol = <FormArray>this.vaccineDetailsForm.controls['vaccineImmunizationDateVoList'];
     for (let i = lineItemcontrol.length - 1; i >= 0; i--) {
       lineItemcontrol.removeAt(i);
     }
+    console.log(event);
+    this.vaccineDetailsForm.controls.petsId.setValue(event.petsId);
+    this.displayPetDetailsDialog = true;
+    this.dialogHeader = "Update Details";
+    this.getvaccineDetailsByPetId();
+  }
+  hideDialog() {
+    this.displayPetDetailsDialog = false;
   }
 
   addNewVaccine() {
     let control = <FormArray>this.vaccineDetailsForm.controls.vaccineImmunizationDateVoList;
     control.push(this._fb.group({
       immunizationDate: ["", Validators.required],
-      vaccineDetailsId: [""],
+      vaccineDetailsId: [null],
       vaccineId: ["", Validators.required]
     }));
   }
@@ -119,6 +122,29 @@ export class PetDetailsComponent implements OnInit {
     this.selectedUserSubscription.unsubscribe();
   }
 
+  getvaccineDetailsByPetId() {
+    this.spinnerService.showLoader();
+    this.apiCommonService.get("/vaccine-details/" + this.vaccineDetailsForm.controls.petsId.value).subscribe(res => {
+      console.log(res);
+      let control = <FormArray>this.vaccineDetailsForm.controls.vaccineImmunizationDateVoList;
+      res.forEach(element => {
+        var dateArr = [];
+        element.immunizationDate.forEach(date => {
+          dateArr.push(new Date(date));
+        })
+        console.log(dateArr);
+        control.push(this._fb.group({
+          immunizationDate: [dateArr, Validators.required],
+          vaccineDetailsId: [element.vaccineDetailsId],
+          vaccineId: [element.vaccineId, Validators.required]
+        }));
+      });
+    }, (err) => {
+    }, () => {
+      this.spinnerService.hideLoader();
+    })
+  }
+
   getVaccine() {
     this.vaccines = [];
     this.spinnerService.showLoader();
@@ -134,19 +160,29 @@ export class PetDetailsComponent implements OnInit {
   saveVaccineDetails() {
     console.log(this.vaccineDetailsForm.value);
     console.log(this.daysSelected);
-    if (this.vaccineDetailsForm.valid) {
-      // this.spinnerService.showLoader();
-      // this.apiCommonService.post("/admin/vaccine-details/", this.vaccineDetailsForm.value).subscribe(res => {
-      //   console.log(res);
-      //   this.alertService.clearMessage();
-      //   this.alertService.sendMessage(res.message, 'success');
-      //   this.hideDialog();
-      //   this.getAllPetsByUser();
-      // }, (err) => {
-      // }, () => {
+    const lineItemcontrol = <FormArray>this.vaccineDetailsForm.controls['vaccineImmunizationDateVoList'];
 
-      //   this.spinnerService.hideLoader();
-      // })
+    for (let i = 0; i <= lineItemcontrol.length - 1; i++) {
+      console.log(lineItemcontrol.controls[i]['controls'].immunizationDate.value);
+      lineItemcontrol.controls[i]['controls'].immunizationDate.value.forEach((element, index) => {
+        lineItemcontrol.controls[i]['controls'].immunizationDate.value[index] = this.datePipe.transform(element, 'yyyy-MM-dd');
+      });
+    }
+
+    console.log(this.vaccineDetailsForm.value);
+    if (this.vaccineDetailsForm.valid) {
+      this.spinnerService.showLoader();
+      this.apiCommonService.post("/admin/vaccine-details/", this.vaccineDetailsForm.value).subscribe(res => {
+        console.log(res);
+        this.alertService.clearMessage();
+        this.alertService.sendMessage(res.message, 'success');
+        this.hideDialog();
+        this.getAllPetsByUser();
+      }, (err) => {
+      }, () => {
+
+        this.spinnerService.hideLoader();
+      })
     } else {
       Object.keys(this.vaccineDetailsForm.controls).forEach(field => {
         const control = this.vaccineDetailsForm.get(field);
@@ -155,27 +191,33 @@ export class PetDetailsComponent implements OnInit {
     }
   }
 
-  isSelected = (event: any) => {
-    const date =
-      event.getFullYear() +
-      "-" +
-      ("00" + (event.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("00" + event.getDate()).slice(-2);
-    return this.daysSelected.find(x => x == date) ? "selected" : null;
-  };
+  // isSelected = (event: any) => {
+  //   const date =
+  //     event.getFullYear() +
+  //     "-" +
+  //     ("00" + (event.getMonth() + 1)).slice(-2) +
+  //     "-" +
+  //     ("00" + event.getDate()).slice(-2);
+  //   return this.daysSelected.find(x => x == date) ? "selected" : null;
+  // };
 
-  select(event: any, calendar: any, i: any) {
-    const date =
-      event.getFullYear() +
-      "-" +
-      ("00" + (event.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("00" + event.getDate()).slice(-2);
-    const index = this.daysSelected.findIndex(x => x == date);
-    if (index < 0) this.daysSelected.push(date);
-    else this.daysSelected.splice(index, 1);
+  // select(event: any, calendar: any, i: any) {
+  //   const lineItemcontrol = <FormArray>this.vaccineDetailsForm.controls['vaccineImmunizationDateVoList'];
+  //   var immunizationDate = [];
+  //   if (lineItemcontrol.value[i].immunizationDate != "") {
+  //     immunizationDate = lineItemcontrol.value[i].immunizationDate
+  //   }
 
-    calendar.updateTodaysDate();
-  }
+  //   const date =
+  //     event.getFullYear() +
+  //     "-" +
+  //     ("00" + (event.getMonth() + 1)).slice(-2) +
+  //     "-" +
+  //     ("00" + event.getDate()).slice(-2);
+  //   const index = this.daysSelected.findIndex(x => x == date);
+  //   if (index < 0) this.daysSelected.push(date);
+  //   else this.daysSelected.splice(index, 1);
+
+  //   calendar.updateTodaysDate();
+  // }
 }
