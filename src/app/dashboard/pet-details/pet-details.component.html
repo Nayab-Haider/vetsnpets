@@ -4,18 +4,20 @@
             <h2>{{selectedUserName}}'s Pets List</h2>
         </div>
         <div class="button-head text-right">
-            <button pTooltip="Back to User" tooltipPosition="top" class="back-button" [routerLink]="['/dashboard/user-details']">
+            <button pTooltip="Back to User" tooltipPosition="top" class="back-button"
+                [routerLink]="['/dashboard/user-details']">
                 <i class="fas fa-long-arrow-alt-left"></i> Back
             </button>
         </div>
-        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]"
-            [resizableColumns]="true" [autoLayout]="true" [responsive]="true" styleClass="mytable">
+        <p-table #dt [columns]="columns" [value]="allPets" [rows]="5" [paginator]="true" [pageLinks]="5"
+            [rowsPerPageOptions]="[5,10,20]" [resizableColumns]="true" [autoLayout]="true" [responsive]="true"
+            styleClass="mytable">
             <ng-template pTemplate="caption">
                 <div class="ui-table-globalfilter-container">
                     <div class="form-inline">
                         <i class="fas fa-search" aria-hidden="true"></i>
-                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                            placeholder="Search" />
+                        <input pInputText type="text" class="form-control form-control-sm ml-2 w-25"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search" />
                     </div>
                 </div>
             </ng-template>
@@ -35,7 +37,8 @@
                         </div>
                         <div *ngIf="col.field=='url'">
                             <div class="pet-profile-image text-center">
-                                <img src="{{car[col.field]}}" class="img-fluid">
+                                <img src="{{car[col.field]}}" onerror="this.src='assets/images/default-Image.jpeg'"
+                                    class="img-fluid">
                             </div>
                         </div>
 
@@ -54,16 +57,18 @@
 </div>
 
 
-<p-dialog header="{{dialogHeader}}" position="top" [(visible)]="displayPetDetailsDialog" styleClass="mydialog" [style]="{width: '50vw'}"
-    [draggable]="false" reponsive="true" appendTo="@(body)">
+<p-dialog header="{{dialogHeader}}" position="top" [(visible)]="displayPetDetailsDialog" styleClass="mydialog"
+    [style]="{width: '50vw'}" [draggable]="false" reponsive="true" appendTo="@(body)">
     <div class="mx-3 my-3">
         <form [formGroup]="vaccineDetailsForm">
-            <div formArrayName="vaccineImmunizationDateVoList" *ngFor="let line of vaccineDetailsForm.get('vaccineImmunizationDateVoList')['controls']; let i = index;">
+            <div formArrayName="vaccineImmunizationDateVoList"
+                *ngFor="let line of vaccineDetailsForm.get('vaccineImmunizationDateVoList')['controls']; let i = index;">
                 <div [formGroupName]="i" class="mt-3">
                     <div class="ui-grid ui-grid-responsive">
                         <div class="ui-grid-col-5">
                             <div class="mr-2">
-                                <ng-select [items]="vaccines" class="custom" bindLabel="vaccineName" bindValue="vaccineId" [multiple]="false" placeholder="Select Vaccine"
+                                <ng-select [items]="vaccines" class="custom" bindLabel="vaccineName"
+                                    bindValue="vaccineId" [multiple]="false" placeholder="Select Vaccine"
                                     formControlName="vaccineId">
                                 </ng-select>
                             </div>
@@ -78,7 +83,8 @@
                             </div>
                         </div>
                         <div class="ui-grid-col-2">
-                            <a (click)="deleteVaccine(i)" pTooltip="Delete Vaccine" tooltipPosition="top" class="deleteVaccinebtn ml-4">
+                            <a (click)="deleteVaccine(i)" pTooltip="Delete Vaccine" tooltipPosition="top"
+                                class="deleteVaccinebtn ml-4">
                                 <span class="delete">
                                     <i class="fa fa-trash" matTooltip="Delete"></i>
                                 </span>
