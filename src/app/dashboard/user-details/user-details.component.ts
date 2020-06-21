@@ -17,6 +17,7 @@ export class UserDetailsComponent implements OnInit {
     { field: 'username', header: 'User Name' },
     { field: 'emailAddress', header: 'Email' },
     { field: 'contactNumber', header: 'Contact' },
+    { field: 'address', header: 'Address' },
     { field: 'actions', header: 'Action' },
   ];
   users = [];
@@ -34,7 +35,8 @@ export class UserDetailsComponent implements OnInit {
           "userRegistrationId": element.userRegistrationId,
           "username": element.firstName + " " + element.lastName,
           "emailAddress": element.emailAddress,
-          "contactNumber": element.contactNumber
+          "contactNumber": element.contactNumber,
+          "address": element.address
         });
       });
     }, (err) => {
